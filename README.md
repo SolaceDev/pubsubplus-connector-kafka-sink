@@ -83,27 +83,27 @@ It builds on the open source [Apache Kafka Quickstart tutorial](//kafka.apache.o
       * Username, Password, Message VPN, one of the Host URIs;
 
    b) Edit the PubSub+ Sink Connector properties file located at `connectors/pubsubplus-connector-kafka-sink-<version>/etc/solace_sink.properties`  updating following respective parameters so the connector can access the PubSub+ event broker:
-* `sol.username`, `sol.password`, `sol.vpn_name`, `sol.host`;
+      * `sol.username`, `sol.password`, `sol.vpn_name`, `sol.host`;
 
    c) Note the configured source and destination information: `topics` is the Kafka source topic (`test`), created in Step 1 and the `sol.topics` parameter specifies the destination topic on PubSub+ (`sinktest`).
 
 5. Start the connector in standalone mode. In a command line session run:
-```sh
-bin/connect-standalone.sh \
-config/connect-standalone.properties \
-connectors/pubsubplus-connector-kafka-sink-<version>/etc/solace_sink.properties
-```
-After startup, the logs will eventually contain following line:
-```
-================Session is Connected
-```
+   ```sh
+   bin/connect-standalone.sh \
+   config/connect-standalone.properties \
+   connectors/pubsubplus-connector-kafka-sink-<version>/etc/solace_sink.properties
+   ```
+   After startup, the logs will eventually contain following line:
+   ```
+   ================Session is Connected
+   ```
 
 6. To watch messages arriving into PubSub+, we use the "Try Me!" test service of the browser-based administration console to subscribe to messages to the `sinktest` topic. Behind the scenes, "Try Me!" uses the JavaScript WebSocket API.
 
-  * If you are using PubSub+ Cloud for your messaging service, follow the instructions in [Trying Out Your Messaging Service](//docs.solace.com/Solace-Cloud/ggs_tryme.htm).
-  * If you are using an existing event broker, log into its [PubSub+ Manager admin console](//docs.solace.com/Solace-PubSub-Manager/PubSub-Manager-Overview.htm#mc-main-content) and follow the instructions in [How to Send and Receive Test Messages](//docs.solace.com/Solace-PubSub-Manager/PubSub-Manager-Overview.htm#Test-Messages).
+   * If you are using PubSub+ Cloud for your messaging service, follow the instructions in [Trying Out Your Messaging Service](//docs.solace.com/Solace-Cloud/ggs_tryme.htm).
+   * If you are using an existing event broker, log into its [PubSub+ Manager admin console](//docs.solace.com/Solace-PubSub-Manager/PubSub-Manager-Overview.htm#mc-main-content) and follow the instructions in [How to Send and Receive Test Messages](//docs.solace.com/Solace-PubSub-Manager/PubSub-Manager-Overview.htm#Test-Messages).
 
-  In both cases ensure to set the topic to `sinktest`, which the connector is publishing to.
+   In both cases ensure to set the topic to `sinktest`, which the connector is publishing to.
 
 7. Demo time! Start to write messages to the Kafka "test" topic. Get back to the Kafka [tutorial](//kafka.apache.org/quickstart#quickstart_send), type and send `Hello world!`.
 
