@@ -17,7 +17,7 @@ Contents:
     + [Deployment](#deployment)
     + [Troubleshooting](#troubleshooting)
     + [Event Processing](#event-processing)
-    + [Performance and reliability considerations](#performance-and-reliability-considerations)
+    + [Performance and Reliability Considerations](#performance-and-reliability-considerations)
     + [Security Considerations](#security-considerations)
   * [Developers Guide](#developers-guide)
 
@@ -74,7 +74,7 @@ It builds on the open source [Apache Kafka Quickstart tutorial](//kafka.apache.o
 2. Install PubSub+ Sink Connector. Designate and create a directory for the PubSub+ Sink Connector (here, we assume it is named `connectors`). Edit the `config/connect-standalone.properties` file, and ensure the `plugin.path` parameter value includes the absolute path of the `connectors` directory.
 [Download]( https://solacedev.github.io/pubsubplus-connector-kafka-sink/downloads ) and extract the PubSub+ Sink Connector into the `connectors` directory.
 
-3. Acquire access to a PubSub+ message broker. If you don't already have one available, the easiest option is to get a free-tier service in a few minutes in [PubSub+ Cloud](//solace.com/try-it-now/), following the [Creating Your First Messaging Service](https://docs.solace.com/Solace-Cloud/ggs_signup.htm) guide. 
+3. Acquire access to a PubSub+ message broker. If you don't already have one available, the easiest option is to get a free-tier service in a few minutes in [PubSub+ Cloud](//solace.com/try-it-now/), following the instructions in [Creating Your First Messaging Service](https://docs.solace.com/Solace-Cloud/ggs_signup.htm). 
 
 4. Configure the PubSub+ Sink Connector:
 
