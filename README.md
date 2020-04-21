@@ -4,7 +4,7 @@
 
 This project provides a Kafka to Solace PubSub+ Event Broker [Sink Connector](//kafka.apache.org/documentation.html#connect_concepts) (adapter) that makes use of the [Kafka Connect API](//kafka.apache.org/documentation/#connect).
 
-> Note: there is also a PubSub+ Kafka Source Connector available from the [PubSub+ Connector Kafka Source]() GitHub repository.
+**Note**: there is also a PubSub+ Kafka Source Connector available from the [PubSub+ Connector Kafka Source]() GitHub repository.
 
 Contents:
 
@@ -251,11 +251,11 @@ We recommend using PubSub+ Topics if high throughput is required and the Kafka T
 
 #### Sending to PubSub+ Queue
 
-When Kafka records reliability is critical, it is recommended to mimic this reliability and configure the Sink Connector to send records to the Event Mesh using PubSub+ queues at the cost of reduced throughput.
+When Kafka records reliability is critical, we recommend configuring the Sink Connector to send records to the Event Mesh using PubSub+ queues at the cost of reduced throughput.
 
-A PubSub+ queue guarantees order of delivery, provides High Availability and Disaster Recovery (depending on the setup of the PubSub+ brokers) and provides an acknowledgment to the connector when the event is stored in all HA and DR members and flushed to disk. This is a higher guarantee than is provided by Kafka even for Kafka idempotent delivery.
+A PubSub+ queue guarantees order of delivery, provides High Availability and Disaster Recovery (depending on the setup of the PubSub+ brokers) and provides an acknowledgment to the connector when the event is stored in all HA and DR members and flushed to disk. This is a higher guarantee than is provided by Kafka, even for Kafka idempotent delivery.
 
-The connector uses local transactions to deliver to the queue by default - the transaction is committed if messages are flushed by Kafka Connect (see below how to tune flush interval) or the outstanding messages size reaches the `sol.autoflush.size` (default 200) configuration.
+The connector uses local transactions to deliver to the queue by default. The transaction is committed if messages are flushed by Kafka Connect (see below how to tune flush interval) or the outstanding messages size reaches the `sol.autoflush.size` (default 200) configuration.
 
 Note that generally one connector can send to only one queue.
 
@@ -360,7 +360,7 @@ See the list of [contributors](../../graphs/contributors) who participated in th
 
 ## License
 
-This project is licensed under the Apache License, Version 2.0. - See the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache License, Version 2.0. See the [LICENSE](LICENSE) file for details.
 
 ## Resources
 
