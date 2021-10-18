@@ -78,12 +78,16 @@ task('prepDistForIntegrationTesting') {
     dependsOn assembleDist
     doLast {
         copy {
-            from zipTree(file('build/distributions').listFiles().findAll {it.name.endsWith('.zip')}[0])
-            into (file('src/integrationTest/resources'))
+            from zipTree(file(distsDirectory).listFiles().findAll {
+                it.name.endsWith("-${project.version}.zip")
+            }[0])
+            into sourceSets.integrationTest.resources.srcDirs[0]
         }
         copy {
-            from zipTree(file('build/distributions').listFiles().findAll {it.name.endsWith('.zip')}[0])
-            into (file('build/resources/integrationTest'))
+            from zipTree(file(distsDirectory).listFiles().findAll {
+                it.name.endsWith("-${project.version}.zip")
+            }[0])
+            into sourceSets.integrationTest.output.resourcesDir
         }
     }
 }
