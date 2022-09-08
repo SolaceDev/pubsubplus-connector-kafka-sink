@@ -633,7 +633,7 @@ public class SinkConnectorIT implements TestConstants {
                         .contains("Document Is Too Large"), 30, TimeUnit.SECONDS);
                 if (autoFlush) {
                     logConsumer.waitUntil(frame -> frame.getUtf8String()
-                            .contains("RetriableException from SinkTask"), 30, TimeUnit.SECONDS);
+                            .contains("ConnectException from SinkTask"), 30, TimeUnit.SECONDS);
                 } else {
                     logConsumer.waitUntil(frame -> frame.getUtf8String()
                             .contains("Offset commit failed, rewinding to last committed offsets"), 1, TimeUnit.MINUTES);

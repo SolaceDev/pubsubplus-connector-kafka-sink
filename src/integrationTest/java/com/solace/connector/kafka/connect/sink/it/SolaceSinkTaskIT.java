@@ -43,7 +43,6 @@ import org.apache.kafka.common.KafkaException;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.connect.data.Schema;
 import org.apache.kafka.connect.errors.ConnectException;
-import org.apache.kafka.connect.errors.RetriableException;
 import org.apache.kafka.connect.sink.SinkRecord;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -198,7 +197,7 @@ public class SolaceSinkTaskIT {
 		solaceSinkTask.stop();
 		ConnectException thrown = assertThrows(ConnectException.class, () -> solaceSinkTask.put(
 				Collections.singleton(sinkRecord)));
-		assertThat(thrown, instanceOf(RetriableException.class));
+		assertThat(thrown, instanceOf(ConnectException.class));
 		assertThat(thrown.getMessage(), containsString("Received exception while sending message to " +
 				(destinationType.isAssignableFrom(Queue.class) ? "queue" : "topic")));
 		assertThat(thrown.getCause(), instanceOf(ClosedFacilityException.class));
@@ -225,7 +224,7 @@ public class SolaceSinkTaskIT {
 		solaceSinkTask.stop();
 		ConnectException thrown = assertThrows(ConnectException.class, () -> solaceSinkTask.put(
 				Collections.singleton(sinkRecord)));
-		assertThat(thrown, instanceOf(RetriableException.class));
+		assertThat(thrown, instanceOf(ConnectException.class));
 		assertThat(thrown.getMessage(), containsString("Received exception while sending message to topic"));
 		assertThat(thrown.getCause(), instanceOf(ClosedFacilityException.class));
 	}
@@ -331,7 +330,7 @@ public class SolaceSinkTaskIT {
 
 		ConnectException thrown;
 		if (autoFlush) {
-			thrown = assertThrows(RetriableException.class, () -> solaceSinkTask.put(Collections.singleton(sinkRecord)));
+			thrown = assertThrows(ConnectException.class, () -> solaceSinkTask.put(Collections.singleton(sinkRecord)));
 		} else {
 			Map<TopicPartition, OffsetAndMetadata> currentOffsets = Collections.singletonMap(
 					new TopicPartition(sinkRecord.topic(), sinkRecord.kafkaPartition()),
@@ -393,7 +392,7 @@ public class SolaceSinkTaskIT {
 
 		ConnectException thrown;
 		if (autoFlush) {
-			thrown = assertThrows(RetriableException.class, () -> solaceSinkTask.put(Collections.singleton(sinkRecord)));
+			thrown = assertThrows(ConnectException.class, () -> solaceSinkTask.put(Collections.singleton(sinkRecord)));
 		} else {
 			Map<TopicPartition, OffsetAndMetadata> currentOffsets = Collections.singletonMap(
 					new TopicPartition(sinkRecord.topic(), sinkRecord.kafkaPartition()),
