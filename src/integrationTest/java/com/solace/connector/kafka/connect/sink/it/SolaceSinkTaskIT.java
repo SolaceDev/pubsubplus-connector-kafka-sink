@@ -46,6 +46,7 @@ import org.apache.kafka.connect.errors.ConnectException;
 import org.apache.kafka.connect.sink.SinkRecord;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -408,6 +409,7 @@ public class SolaceSinkTaskIT {
 				.getData().getMaxMsgSizeExceededDiscardedMsgCount());
 	}
 
+	@Disabled()
 	@ParameterizedTest(name = "[{index}] autoFlush={0}")
 	@ValueSource(booleans = {false, true})
 	public void testLongCommit(boolean autoFlush,
@@ -497,6 +499,7 @@ public class SolaceSinkTaskIT {
 				JCSMPFactory.onlyInstance().createTopic(connectorProperties.get(SolaceSinkConstants.SOL_TOPICS))));
 	}
 
+	@Disabled()
 	@CartesianTest(name = "[{index}] destinationType={0}, autoFlush={1}")
 	public void testDynamicDestinationLongCommit(
 			@Values(classes = {Queue.class, Topic.class}) Class<Destination> destinationType,
